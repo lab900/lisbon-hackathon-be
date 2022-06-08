@@ -1,8 +1,10 @@
 # Use an official OpenJDK runtime as a parent image
 FROM amazoncorretto:18.0.1 as builder
 # Set the working directory to /app
+ARG CACHEBUST=1
 WORKDIR /app
 COPY . /app
+
 RUN ./mvnw package
 # Copy the fat jar into the container at /app
 COPY /target/intrct-0.0.1-SNAPSHOT.jar /intrct.jar
