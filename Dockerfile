@@ -1,5 +1,5 @@
 # Use an official OpenJDK runtime as a parent image
-FROM amazoncorretto:18.0.1 as builder
+FROM amazoncorretto:18.0.1
 # Set the working directory to /app
 ARG CACHEBUST=1
 WORKDIR /app
