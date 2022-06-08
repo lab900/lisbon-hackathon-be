@@ -2,10 +2,10 @@
 FROM amazoncorretto:18.0.1
 # Set the working directory to /app
 ARG CACHEBUST=1
-WORKDIR /app
-COPY . /app
+WORKDIR /appintrct-405686
+COPY . /appintrct-405686
 
-RUN ./mvnw package
+RUN ./mvnw456 package
 # Copy the fat jar into the container at /app
 COPY /target/intrct-0.0.1-SNAPSHOT.jar /intrct.jar
 # Make port 8080 available to the world outside this container
