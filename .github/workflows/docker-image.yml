@@ -10,7 +10,7 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: ${{ github.repository }}${{ env.GITHUB_RUN_NUMBER }}
 
 jobs:
 
@@ -44,8 +44,8 @@ jobs:
       with:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
     - name: check image name ${{ env.REGISTRY }} / ${{ env.IMAGE_NAME }}:date
-      run: echo ${{ env.REGISTRY }} / ${{ env.IMAGE_NAME }}:$(date +%s)
+      run: echo ${{ env.REGISTRY }} / ${{ env.IMAGE_NAME }}
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$(date +%s)
+      run: docker build . --file Dockerfile --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
     - name: Push the Docker image
-      run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$(date +%s)
+      run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
