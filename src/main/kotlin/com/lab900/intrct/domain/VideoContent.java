@@ -8,8 +8,9 @@ import javax.persistence.Entity;
 
 @Getter
 @Setter
-@DiscriminatorValue("TEXT")
+@DiscriminatorValue("VIDEO")
 @Entity
-public class TextContent extends Content {
-    private String textValue;
+public class VideoContent extends Content {
+    private String link;
+    private boolean isScrollable;
 }
