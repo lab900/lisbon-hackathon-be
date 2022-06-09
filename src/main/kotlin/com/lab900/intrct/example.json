@@ -1,0 +1,80 @@
+{
+  "id": "0",
+  "name": "cartoonBaseShowCase",
+  "layers": [
+    {
+      "id": "1",
+      "name": "staticVideoLayer",
+      "content": {
+        "value": "https://storage.googleapis.com/lab900-public-assets/background.mp4",
+        "type": "VIDEO"
+      },
+      "transitions": [
+        {
+          "startPosition": {
+            "x": 0,
+            "y": 0
+          },
+          "endPosition": {
+            "x": 100,
+            "y": 100
+          },
+          "animation-in": "FADE-IN",
+          "animation-out": "FADE-OUT"
+        }
+      ],
+      "subLayers": [
+        {
+          "id": "2",
+          "name": "title",
+          "content": {
+            "value": "Space is messy",
+            "type": "TEXT"
+          },
+          "transitions": [
+            {
+              "startPosition": {
+                "x": 2,
+                "y": 2
+              },
+              "endPosition": {
+                "x": 2,
+                "y": 2
+              },
+              "animation-in": "NONE",
+              "animation-out": "NONE"
+            }
+          ],
+          "subLayers": [
+            {}
+          ]
+        },
+        {
+          "id": "3",
+          "name": "explanation",
+          "content": {
+            "value": "Space, the final frontier, vast void speckled with planets and it's stars and well… JUNK. You see, space is messy, REALLY MESSY. But why should we care? What is space junk? Why clear space?",
+            "type": "TEXT"
+          },
+          "transitions": [
+            {
+              "startPosition": {
+                "x": 2,
+                "y": 10
+              },
+              "endPosition": {
+                "x": 2,
+                "y": 10
+              },
+              "animation-in": "NONE",
+              "animation-out": "NONE"
+            }
+          ],
+          "subLayers": [
+            {}
+          ]
+        }
+      ]
+    }
+  ]
+}
