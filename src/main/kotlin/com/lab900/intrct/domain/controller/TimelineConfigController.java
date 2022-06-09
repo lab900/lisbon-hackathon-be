@@ -20,7 +20,7 @@ public class TimelineConfigController {
         return repo.findAll();
     }
 
-    @GetMapping("/v1/config/${id}")
+    @GetMapping("/v1/config/{id}")
     public TimelineConfig one(@PathVariable Long id) {
         return repo.findById(id).orElseThrow();
     }
