@@ -1,49 +1,28 @@
 package com.lab900.intrct.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class Layer {
     @Id
     private Long id;
     private String name;
-    private String content;
+    @OneToOne
+    private Content content;
     private boolean showInMenu;
 
-    @OneToOne
-    private Transition transition;
+    @OneToMany
+    private List<Transition> transition;
+    @OneToMany
+    private List<Layer> subLayers;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public boolean isShowInMenu() {
-        return showInMenu;
-    }
-
-    public void setShowInMenu(boolean showInMenu) {
-        this.showInMenu = showInMenu;
-    }
-
-    public Transition getTransition() {
-        return transition;
-    }
-
-    public void setTransition(Transition transition) {
-        this.transition = transition;
-    }
 }
