@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Setter
 public class Transition {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Embedded
     @AttributeOverrides({
