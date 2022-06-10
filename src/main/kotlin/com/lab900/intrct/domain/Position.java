@@ -8,7 +8,7 @@ import javax.persistence.Embeddable;
 @Getter
 @Setter
 @Embeddable
-class Position {
+public class Position {
     private Long x;
     private Long y;
 }

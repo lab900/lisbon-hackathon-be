@@ -18,7 +18,6 @@ public class DummyData {
     private final ContentRepository contentRepository;
     private final TimelineConfigJpaRepository timelineConfigJpaRepository;
 
-
     public DummyData(LayerJpaRepository layerJpaRepository, TransistionJpaRepository transistionJpaRepository, ContentRepository contentRepository, TimelineConfigJpaRepository timelineConfigJpaRepository) {
 
         this.layerJpaRepository = layerJpaRepository;
@@ -35,27 +34,26 @@ public class DummyData {
         videoContent.setLink("https://storage.googleapis.com/lab900-public-assets/background.mp4");
         videoContent.setScrollable(false);
         mainLayer.setContent(this.contentRepository.save(videoContent));
+
         Layer subLayer1 = createLayer(2L, "title", 2L, 2L, 2L, 2L, "NONE", "NONE");
         TextContent contentSubLayer1 = new TextContent();
         contentSubLayer1.setTextValue("Space is messy");
         subLayer1.setContent(this.contentRepository.save(contentSubLayer1));
-        this.layerJpaRepository.save(subLayer1);
+
         Layer subLayer2 = createLayer(3L, "explanation", 2L, 10L, 2L, 10L, "NONE", "NONE");
         TextContent contentSubLayer2 = new TextContent();
         contentSubLayer2.setTextValue("Space, the final frontier, vast void speckled with planets and it's stars and well… JUNK. You see, space is messy, REALLY MESSY. But why should we care? What is space junk? Why clear space?");
         subLayer2.setContent(this.contentRepository.save(contentSubLayer2));
-        this.layerJpaRepository.save(subLayer2);
 
         List<Layer> subLayers = new ArrayList<>();
-        subLayers.add(subLayer1);
-        subLayers.add(subLayer2);
-        subLayer1.setSubLayers(subLayers);
-        this.layerJpaRepository.save(mainLayer);
+        subLayers.add(this.layerJpaRepository.save(subLayer1));
+        subLayers.add(this.layerJpaRepository.save(subLayer2));
+        mainLayer.setSubLayers(subLayers);
 
         TimelineConfig timelineConfig = new TimelineConfig();
         timelineConfig.setId(0L);
         timelineConfig.setName("cartoonBaseShowCase");
-        timelineConfig.setLayers(Collections.singleton(mainLayer));
+        timelineConfig.setLayers(Collections.singleton(this.layerJpaRepository.save(mainLayer)));
 
         this.timelineConfigJpaRepository.save(timelineConfig);
     }
@@ -72,6 +70,17 @@ public class DummyData {
         layer.setId(id);
         layer.setName(name);
 //        layer.setContent();
+
+        layer.setTransition(Collections.singletonList(saveTransition(startX, startY, endX, endY, animationIn, animationOut)));
+        return layer;
+    }
+
+    public Transition saveTransition(long startX,
+                                     long startY,
+                                     long endX,
+                                     long endY,
+                                     String animationIn,
+                                     String animationOut) {
         Transition transition = new Transition();
         Position startPosition = new Position();
         startPosition.setX(startX);
@@ -85,7 +94,6 @@ public class DummyData {
         transition.setAnimationIn(animationIn);
         transition.setAnimationOut(animationOut);
 
-        layer.setTransition(Collections.singletonList(transition));
-        return layer;
+        return transistionJpaRepository.save(transition);
     }
 }
